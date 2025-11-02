@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
-import Image from 'next/image';
-import { CardProps } from '../../interfaces';
-import { BedIcon, BathIcon, UsersIcon, StarIcon } from '../../constants/index';
+import { Listing } from './types';
+import { BedIcon, BathIcon, UsersIcon, StarIcon } from '../constants';
 
-const Card: React.FC<CardProps> = ({ listing }) => {
+interface PropertyCardProps {
+  listing: Listing;
+}
+
+const PropertyCard: React.FC<PropertyCardProps> = ({ listing }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const nextImage = (e: React.MouseEvent) => {
@@ -20,12 +23,11 @@ const Card: React.FC<CardProps> = ({ listing }) => {
     <div className="flex flex-col group cursor-pointer">
       <div className="relative w-full aspect-[4/3] rounded-xl overflow-hidden">
         {listing.images.map((image, index) => (
-          <Image
+          <img
             key={index}
             src={image}
             alt={listing.title}
-            fill
-            className={`object-cover transition-opacity duration-300 ${index === currentImageIndex ? 'opacity-100' : 'opacity-0'}`}
+            className={`absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-300 ${index === currentImageIndex ? 'opacity-100' : 'opacity-0'}`}
           />
         ))}
 
@@ -37,13 +39,13 @@ const Card: React.FC<CardProps> = ({ listing }) => {
         
         {listing.images.length > 1 && (
             <>
-                <button onClick={prevImage} className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/80 p-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity z-10">
+                <button onClick={prevImage} className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/80 p-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" /></svg>
                 </button>
-                <button onClick={nextImage} className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/80 p-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity z-10">
+                <button onClick={nextImage} className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/80 p-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" /></svg>
                 </button>
-                <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex space-x-1.5 z-10">
+                <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex space-x-1.5">
                     {listing.images.map((_, index) => (
                         <div key={index} className={`w-1.5 h-1.5 rounded-full ${index === currentImageIndex ? 'bg-white' : 'bg-white/50'}`}></div>
                     ))}
@@ -89,4 +91,4 @@ const Card: React.FC<CardProps> = ({ listing }) => {
   );
 };
 
-export default Card;
+export default PropertyCard;

@@ -1,3 +1,4 @@
+// Fix: Import React to resolve the "Cannot find namespace 'React'" error.
 import React from 'react';
 
 export interface Category {
@@ -19,13 +20,4 @@ export interface Listing {
     guests: number;
   };
   discount?: number;
-}
-
-// Props for reusable components
-export interface CardProps {
-  listing: Listing;
-}
-
-export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  children: React.ReactNode;
 }
