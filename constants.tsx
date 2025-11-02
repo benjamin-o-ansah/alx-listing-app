@@ -1,5 +1,5 @@
 import React from 'react';
-import { Category, Listing } from './public/components/types';
+import { Category, Listing } from './components/types';
 
 // SVG Icons as React Components
 export const BedIcon = ({ className = 'w-5 h-5' }: { className?: string }) => (

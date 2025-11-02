@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { categories, listings } from '../public/constants/index';
-import PropertyCard from '../public/components/propertyCard';
-import Footer from '../public/components/footer';
+import { categories, listings } from '../constants/index';
+import PropertyCard from '../components/propertyCard';
+import Footer from '../components/footer';
 
 const App: React.FC = () => {
     const [activeCategory, setActiveCategory] = useState('Villa');
